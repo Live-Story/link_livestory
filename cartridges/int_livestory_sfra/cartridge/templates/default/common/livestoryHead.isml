@@ -1,0 +1,10 @@
+<isif condition="${dw.system.Site.getCurrent().getCustomPreferenceValue('lsActive')}">
+    <!-- Live Story Main Script -->
+    <script type="text/javascript">(function(d,w,s,u,y,z) { y=d.createElement(s);
+        z=d.getElementsByTagName(s)[0]; y.src=u; y.type="text/javascript"; y.async=1; z.parentNode.insertBefore(y,z);
+        })(document,window,"script","https://assets.livestory.io/dist/livestory-<isprint value="${dw.system.Site.getCurrent().getCustomPreferenceValue('lsBrandCode')}" />.min.js");
+    </script>
+    <script type="text/javascript">
+        window.LS_CONTROLLER_URL = "${dw.web.URLUtils.abs('Livestory-Parse')}";
+    </script>
+</isif>

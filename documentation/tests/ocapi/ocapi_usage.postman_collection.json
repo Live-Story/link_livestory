@@ -1,0 +1,570 @@
+{
+	"info": {
+		"_postman_id": "6a9ae687-dd9c-48e5-91d8-cf9c55674c4b",
+		"name": "Live Story OCAPI Usage",
+		"description": "This collection provides examples of Live Story's OCAPI usage",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Retrieve Auth Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fe84e99b-9acf-43fd-9334-d9c61936f650",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"pm.environment.set('sfccAuthToken', data.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{sfccClientPassword}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{sfccClientId}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://account.demandware.com/dw/oauth2/access_token",
+							"protocol": "https",
+							"host": [
+								"account",
+								"demandware",
+								"com"
+							],
+							"path": [
+								"dw",
+								"oauth2",
+								"access_token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Attribute",
+			"item": [
+				{
+					"name": "System Content Attributes Definitions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{sfccDataApiBaseURL}}/system_object_definitions/Content/attribute_definitions?select=(**)",
+							"host": [
+								"{{sfccDataApiBaseURL}}"
+							],
+							"path": [
+								"system_object_definitions",
+								"Content",
+								"attribute_definitions"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "(**)"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Attribute Groups",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{sfccDataApiBaseURL}}/system_object_definitions/Content/attribute_groups?select=(**)",
+							"host": [
+								"{{sfccDataApiBaseURL}}"
+							],
+							"path": [
+								"system_object_definitions",
+								"Content",
+								"attribute_groups"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "(**)"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Single Attribute Group",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{sfccDataApiBaseURL}}/system_object_definitions/Content/attribute_groups/{{attributeGroupId}}?select=(**)&expand=definition",
+							"host": [
+								"{{sfccDataApiBaseURL}}"
+							],
+							"path": [
+								"system_object_definitions",
+								"Content",
+								"attribute_groups",
+								"{{attributeGroupId}}"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "(**)"
+								},
+								{
+									"key": "expand",
+									"value": "definition"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Single System Content Attribute Definition",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{sfccDataApiBaseURL}}/system_object_definitions/Content/attribute_definitions/{{systemContentAttribute}}?select=(**)&expand=all",
+							"host": [
+								"{{sfccDataApiBaseURL}}"
+							],
+							"path": [
+								"system_object_definitions",
+								"Content",
+								"attribute_definitions",
+								"{{systemContentAttribute}}"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "(**)"
+								},
+								{
+									"key": "expand",
+									"value": "all"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Folder",
+			"item": [
+				{
+					"name": "Folder Content",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{sfccDataApiBaseURL}}/libraries/{{sfccLibraryId}}/folders/{{sfccRootFolderId}}/sub_folders",
+							"host": [
+								"{{sfccDataApiBaseURL}}"
+							],
+							"path": [
+								"libraries",
+								"{{sfccLibraryId}}",
+								"folders",
+								"{{sfccRootFolderId}}",
+								"sub_folders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Folder",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-dw-http-method-override",
+								"value": "PUT",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"parent_folder_id\": \"{{sfccRootFolderId}}\"\n}"
+						},
+						"url": {
+							"raw": "{{sfccDataApiBaseURL}}/libraries/{{sfccLibraryId}}/folders/{{newFolderId}}",
+							"host": [
+								"{{sfccDataApiBaseURL}}"
+							],
+							"path": [
+								"libraries",
+								"{{sfccLibraryId}}",
+								"folders",
+								"{{newFolderId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Folder",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"online\": true\n}"
+						},
+						"url": {
+							"raw": "{{sfccDataApiBaseURL}}/libraries/{{sfccLibraryId}}/folders/{{newFolderId}}",
+							"host": [
+								"{{sfccDataApiBaseURL}}"
+							],
+							"path": [
+								"libraries",
+								"{{sfccLibraryId}}",
+								"folders",
+								"{{newFolderId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Folder",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{sfccDataApiBaseURL}}/libraries/{{sfccLibraryId}}/folders/{{newFolderId}}",
+							"host": [
+								"{{sfccDataApiBaseURL}}"
+							],
+							"path": [
+								"libraries",
+								"{{sfccLibraryId}}",
+								"folders",
+								"{{newFolderId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Folder Assignment",
+			"item": [
+				{
+					"name": "Associate Content to Folder",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-dw-http-method-override",
+								"value": "PUT",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{sfccDataApiBaseURL}}/libraries/{{sfccLibraryId}}/folder_assignments/{{contentAssetId}}/{{sfccRootFolderId}}",
+							"host": [
+								"{{sfccDataApiBaseURL}}"
+							],
+							"path": [
+								"libraries",
+								"{{sfccLibraryId}}",
+								"folder_assignments",
+								"{{contentAssetId}}",
+								"{{sfccRootFolderId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Content to Folder Association",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-dw-http-method-override",
+								"type": "text",
+								"value": "PUT"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{sfccDataApiBaseURL}}/libraries/{{sfccLibraryId}}/folder_assignments/{{contentAssetId}}/{{sfccRootFolderId}}",
+							"host": [
+								"{{sfccDataApiBaseURL}}"
+							],
+							"path": [
+								"libraries",
+								"{{sfccLibraryId}}",
+								"folder_assignments",
+								"{{contentAssetId}}",
+								"{{sfccRootFolderId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Content",
+			"item": [
+				{
+					"name": "Single Content",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{sfccDataApiBaseURL}}/libraries/{{sfccLibraryId}}/content/{{contentAssetId}}",
+							"host": [
+								"{{sfccDataApiBaseURL}}"
+							],
+							"path": [
+								"libraries",
+								"{{sfccLibraryId}}",
+								"content",
+								"{{contentAssetId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Content",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-dw-http-method-override",
+								"value": "PUT",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"online\": {\n        \"default\": true\n    },\n    \"template\": \"content/livestory/livestoryContent.isml\",\n    \"c_body\": {\n        \"default\": \"<div>Hello world</div>\"\n    },\n    \"c_lsTitle\": {\n        \"default\": \"Test layout\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{sfccDataApiBaseURL}}/libraries/{{sfccLibraryId}}/content/{{contentAssetId}}",
+							"host": [
+								"{{sfccDataApiBaseURL}}"
+							],
+							"path": [
+								"libraries",
+								"{{sfccLibraryId}}",
+								"content",
+								"{{contentAssetId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Meta",
+			"item": [
+				{
+					"name": "Permissions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{sfccMetaApiBaseURL}}/data/18_8",
+							"host": [
+								"{{sfccMetaApiBaseURL}}"
+							],
+							"path": [
+								"data",
+								"18_8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{sfccAuthToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "e54d6a96-efbf-4c70-a3be-2f5b0f16cc5c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "1a823944-e985-48ce-8091-9ad943b17883",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "b701b35e-c434-4950-aadd-c0d5fb98e571",
+			"key": "sfccDataApiBaseURL",
+			"value": "https://livestory01-tech-prtnr-na06-dw.demandware.net/s/-/dw/data/v18_8",
+			"type": "string"
+		},
+		{
+			"id": "2a770ff9-4539-4943-a7e0-cfb4043f1758",
+			"key": "sfccClientId",
+			"value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+			"type": "string"
+		},
+		{
+			"id": "be9813e5-a5cf-4fdf-ba98-4b4c52e251df",
+			"key": "sfccClientPassword",
+			"value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+			"type": "string"
+		},
+		{
+			"id": "394b71eb-f30f-4006-8a75-819dbbab819b",
+			"key": "sfccLibraryId",
+			"value": "RefArchSharedLibrary",
+			"type": "string"
+		},
+		{
+			"id": "707c22f5-3a05-4f37-bda2-68646a707dad",
+			"key": "sfccRootFolderId",
+			"value": "livestory",
+			"type": "string"
+		},
+		{
+			"id": "ea0190ad-8418-426a-a8b3-45d564dcb0d9",
+			"key": "sfccMetaApiBaseURL",
+			"value": "https://livestory01-tech-prtnr-na06-dw.demandware.net/s/-/dw/meta/v1/rest",
+			"type": "string"
+		}
+	]
+}

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xmlns="http://www.demandware.com/xml/impex/metadata/2006-10-31">
+
+    <type-extension type-id="SitePreferences">
+        <custom-attribute-definitions>
+            <attribute-definition attribute-id="lsActive">
+                <display-name xml:lang="x-default">Live Story - Status</display-name>
+                <type>boolean</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <default-value>true</default-value>
+            </attribute-definition>
+            <attribute-definition attribute-id="lsBrandCode">
+                <display-name xml:lang="x-default">Live Story - Brand Code</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <default-value></default-value>
+            </attribute-definition>
+        </custom-attribute-definitions>
+        <group-definitions>
+            <attribute-group group-id="livestory">
+                <display-name xml:lang="x-default">Live Story</display-name>
+                <attribute attribute-id="lsActive"/>
+                <attribute attribute-id="lsBrandCode"/>
+            </attribute-group>
+        </group-definitions>
+    </type-extension>
+
+    <type-extension type-id="Content">
+        <custom-attribute-definitions>
+            <attribute-definition attribute-id="lsAbstract">
+                <display-name xml:lang="x-default">Live Story - Abstract</display-name>
+                <description xml:lang="x-default">Abstract of the Live Story wall</description>
+                <type>string</type>
+                <localizable-flag>true</localizable-flag>
+                <site-specific-flag>false</site-specific-flag>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="lsThumbnail">
+                <display-name xml:lang="x-default">Live Story - Thumbnail</display-name>
+                <description xml:lang="x-default">Thumbnail of the Live Story wall</description>
+                <type>string</type>
+                <localizable-flag>false</localizable-flag>
+                <site-specific-flag>false</site-specific-flag>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="lsTitle">
+                <display-name xml:lang="x-default">Live Story - Title</display-name>
+                <description xml:lang="x-default">Title of the Live Story wall</description>
+                <type>string</type>
+                <localizable-flag>true</localizable-flag>
+                <site-specific-flag>false</site-specific-flag>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+        </custom-attribute-definitions>
+        <group-definitions>
+            <attribute-group group-id="livestory">
+                <display-name xml:lang="x-default">Live Story</display-name>
+                <attribute attribute-id="lsThumbnail"/>
+                <attribute attribute-id="lsTitle"/>
+                <attribute attribute-id="lsAbstract"/>
+                <attribute attribute-id="tags"/>
+            </attribute-group>
+        </group-definitions>
+    </type-extension>
+</metadata>

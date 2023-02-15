@@ -1,0 +1,36 @@
+{
+  "name": "link_livestory",
+  "version": "20.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "npm run lint:js",
+    "lint:js": "sgmf-scripts --lint js",
+    "test": "sgmf-scripts --test tests/unit/**/*.js",
+    "test:integration": "sgmf-scripts --integration 'tests/integration/**/*.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SalesforceCommerceCloud/link_livestory.git.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SalesforceCommerceCloud/link_livestory.git/issues"
+  },
+  "homepage": "https://github.com/SalesforceCommerceCloud/link_livestory.git#readme",
+  "dependencies": {
+    "eslint": "^7.8.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "sgmf-scripts": "^2.4.1"
+  },
+  "devDependencies": {
+    "@tridnguyen/config": "^2.3.1",
+    "app-module-path": "^2.2.0",
+    "chai": "^4.2.0",
+    "dw-api-mock": "git+https://github.com/SalesforceCommerceCloud/dw-api-mock.git",
+    "proxyquire": "^2.1.3",
+    "request-promise": "^4.2.6"
+  }
+}

@@ -1,0 +1,9 @@
+<isdecorate template="common/layout/page">
+    <!-- dwMarker="content" dwContentID="${pdict.content.UUID}" -->
+    <isscript>
+        var livestoryHelper = require('~/cartridge/scripts/helpers/livestoryHelper');
+	    var body = livestoryHelper.parseLink(pdict.content.body);
+    </isscript>
+    <isprint value="${body}" encoding="off" />
+    <!-- END_dwmarker -->
+</isdecorate>

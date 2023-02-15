@@ -1,0 +1,9 @@
+<isif condition="${slotcontent != null}">
+    <isloop items="${slotcontent.content}" var="contentAsset">
+        <isscript>
+            var livestoryHelper = require('~/cartridge/scripts/helpers/livestoryHelper');
+	        var body = livestoryHelper.parseLink(contentAsset.custom.body);
+        </isscript>
+        <isprint value="${body}" encoding="off"/>
+    </isloop>
+</isif>
